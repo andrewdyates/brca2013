@@ -3,6 +3,8 @@
 \#*
 #*
 .\#*
+*.Rout
+*\.o*
 
 # C extensions
 *.so

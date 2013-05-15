@@ -11,4 +11,4 @@ cd /nfs/01/osu6683/
 source .bash_profile
 
 cd ~/brca/brca2013
-time R BATCH CMD may.14.manual.allbool.gse7307.R may.14.manual.allbool.gse7307.Rout
+time R CMD BATCH ~/brca/brca2013/may14.manual.allbool.gse7307.R may.14.manual.allbool.gse7307.Rout
