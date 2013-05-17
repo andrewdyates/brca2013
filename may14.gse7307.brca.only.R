@@ -24,10 +24,10 @@ summary(as.factor(BRCA1.CLS))
 summary(as.factor(BRCA2.CLS))
 # BRCA1
 #   1    2    3    4    5 
-# 610  142 2121 7375 3970
+# 640   96 2007 7972 3503
 # BRCA2
 #   1    2    3    4    5 
-# 640   96 2007 7972 3503 
+# 610  142 2121 7375 3970
 
 BRCA2.DCOR <- apply(M, 1, function(x) dcor(x,M[2929,]))
 save(BRCA2.DCOR, file="../BRCA2.dcor.RData")
