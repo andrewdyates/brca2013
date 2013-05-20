@@ -77,4 +77,79 @@ plot.enrichments(BRCA2.R$table, BRCA2.PCC, BRCA2.DCOR[b2], "BRCA2")
 
 
 # 3: fraction per class for PPI, TF, TFT, ALL
+load("../BRCA1.pcc.RData")
+load("../BRCA2.pcc.RData")
+
+
+# all
+CLS <- BRCA1.CLS
+tab <- BRCA1.R$table
+n <- length(CLS)
+PCC <- BRCA1.PCC
+name <- "BRCA1"
+
+CLS <- BRCA2.CLS
+tab <- BRCA2.R$table
+n <- length(CLS)
+PCC <- BRCA2.PCC
+name <- "BRCA2"
+
+
+dim(tab$"1")[1]
+sum(tab$"1"$dlist.sort >= 0.2)
+dim(tab$"2")[1]
+sum(tab$"2"$dlist.sort >= 0.2)
+dim(tab$"3")[1]
+sum(tab$"3"$dlist.sort >= 0.2)
+dim(tab$"4")[1]
+sum(tab$"4"$dlist.sort >= 0.2)
+dim(tab$"5")[1]
+sum(tab$"5"$dlist.sort >= 0.2)
+
+sum(tab$"1"$ppi.v)
+sum(tab$"1"$ppi.v[tab$"1"$dlist.sort >= 0.2])
+sum(tab$"2"$ppi.v)
+sum(tab$"2"$ppi.v[tab$"2"$dlist.sort >= 0.2])
+sum(tab$"3"$ppi.v)
+sum(tab$"3"$ppi.v[tab$"3"$dlist.sort >= 0.2])
+sum(tab$"4"$ppi.v)
+sum(tab$"4"$ppi.v[tab$"4"$dlist.sort >= 0.2])
+sum(tab$"5"$ppi.v)
+sum(tab$"5"$ppi.v[tab$"5"$dlist.sort >= 0.2])
+
+sum(tab$"1"$trans.v)
+sum(tab$"1"$trans.v[tab$"1"$dlist.sort >= 0.2])
+sum(tab$"2"$trans.v)
+sum(tab$"2"$trans.v[tab$"2"$dlist.sort >= 0.2])
+sum(tab$"3"$trans.v)
+sum(tab$"3"$trans.v[tab$"3"$dlist.sort >= 0.2])
+sum(tab$"4"$trans.v)
+sum(tab$"4"$trans.v[tab$"4"$dlist.sort >= 0.2])
+sum(tab$"5"$trans.v)
+sum(tab$"5"$trans.v[tab$"5"$dlist.sort >= 0.2])
+
+sum(tab$"1"$trans.targ.v)
+sum(tab$"1"$trans.targ.v[tab$"1"$dlist.sort >= 0.2])
+sum(tab$"2"$trans.targ.v)
+sum(tab$"2"$trans.targ.v[tab$"2"$dlist.sort >= 0.2])
+sum(tab$"3"$trans.targ.v)
+sum(tab$"3"$trans.targ.v[tab$"3"$dlist.sort >= 0.2])
+sum(tab$"4"$trans.targ.v)
+sum(tab$"4"$trans.targ.v[tab$"4"$dlist.sort >= 0.2])
+sum(tab$"5"$trans.targ.v)
+sum(tab$"5"$trans.targ.v[tab$"5"$dlist.sort >= 0.2])
+
+# all tf
+
+# tf targeting
+
+sum(PINA.ADJ[rownames(PINA.ADJ)==name,])
+PCC.syms <- names(sort(PCC,decreasing=T)[1:dim(tab$"2")[1]])
+ppis <- PINA.ADJ[which(rownames(PINA.ADJ)==name),]
+ppis.syms <- names(ppis)[ppis==1]
+tf <- colnames(TF.ADJ)
+tftarg <- colnames(TF.ADJ)[which(TF.ADJ[rownames(TF.ADJ)=="BRCA2",]==1)]
+
+sum(PCC.syms %in% tf)
+sum(PCC.syms %in% tftarg)
 
