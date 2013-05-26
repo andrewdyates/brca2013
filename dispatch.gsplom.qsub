@@ -1,0 +1,15 @@
+#PBS -N GSPLOM
+#PBS -l nodes=1:ppn=12
+#PBS -j oe
+#PBS -m ea
+#PBS -S /bin/bash
+#PBS -l walltime=99:00:00
+
+#tdate=$(date +%%T)
+
+set -x
+cd /nfs/01/osu6683/
+source .bash_profile
+
+cd ~/brca/brca2013/
+time R CMD BATCH ~/brca/brca2013/may25.workbench.R ~/brca/brca2013/may25.workbench.Rout
