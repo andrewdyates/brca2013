@@ -95,9 +95,17 @@ S.avg.300$edge.flaws / S.avg.300$edge.all.n           # [1] 0.0187291
 S.avg.300$edge.n / S.avg.300$edge.all.n               # [1] 0.6098774
 # ------------------------------
 
-save(C.avg.235, file="../may26.k235.avglink.5pct.extant.collapsed.RData")
-write.table(C.avg.235$CLS, file="../may26.k235.avglink.5pct.extant.collapsed.CLS.tab", sep="\t", quote=F)
-write.table(C.avg.235$DCOR, file="../may26.k235.avglink.5pct.extant.collapsed.DCOR.tab", sep="\t", quote=F)
 # HOW TO SAVE MEMBER LIST?
 # TODO: all collapsed weaks
+# 0: no class; 1: and; 2: rn4c (row necessary for col); 3: cn4r (col necessary for row); 4: xor; 5: mix, 6: no class
+W.avg.235 <- collapse.weak(WEAK.s,cutree(H.avg,235))
+summary(as.factor(WEAK.s))
+#      1       2       3       4       5 
+#  44873  188435  188435   31052 1361614 
 
+
+save(C.avg.235, W.avg.235, file="../may26.k235.avglink.5pct.extant.collapsed.RData")
+write.table(C.avg.235$CLS, file="../may26.k235.avglink.5pct.extant.collapsed.CLS.tab", sep="\t", quote=F)
+write.table(C.avg.235$DCOR, file="../may26.k235.avglink.5pct.extant.collapsed.DCOR.tab", sep="\t", quote=F)
+write.table(W.avg.235, file="../may26.k235.avglink.5pct.extant.collapsed.WEAK.tab", sep="\t", quote=F)
+write.table(cutree(H.avg,235), file="../may26.k235.avglink.5ct.extant.collapsed.hclust.csv", sep=",", col.name=F)
