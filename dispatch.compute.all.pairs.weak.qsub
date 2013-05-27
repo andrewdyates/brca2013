@@ -12,4 +12,5 @@ cd /nfs/01/osu6683/
 source .bash_profile
 
 cd $HOME
-time R CMD BATCH ~/brca/brca2013/may22.compute.all.pairs.weak.gse7307.R ~/brca/brca2013/may22.compute.all.pairs.weak.gse7307.Rout
+#time R CMD BATCH ~/brca/brca2013/may22.compute.all.pairs.weak.gse7307.R ~/brca/brca2013/may22.compute.all.pairs.weak.gse7307.Rout
+time R CMD BATCH ~/brca/brca2013/may26.compute.all.pairs.weak.gse7307.R ~/brca/brca2013/may26.compute.all.pairs.weak.gse7307.Rout
