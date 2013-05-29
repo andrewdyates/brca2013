@@ -1,0 +1,1 @@
+python $HOME/pymod/dependency_matrix/dispatch_script.py fname=$HOME/brca/GSE31448.SCAN.tab computers=[\"Dcor\",\"PCC\"] outdir=$HOME/brca/GSE31448_dep n_nodes=20 n_ppn=12 hours=72
