@@ -1,0 +1,105 @@
+(pythonbase)~/brca/brca2013$ python $HOME/pymod/dependency_matrix/dispatch_script.py fname=$HOME/brca/GSE31448.SCAN.tab computers=[\"Dcor\",\"PCC\"] outdir=$HOME/brca/GSE31448_dep n_nodes=20 n_ppn=12 hours=72
+{'n_nodes': '20', 'computers': '["Dcor","PCC"]', 'hours': '72', 'fname': '/nfs/01/osu6683/brca/GSE31448.SCAN.tab', 'n_ppn': '12', 'outdir': '/nfs/01/osu6683/brca/GSE31448_dep'}
+Created outdir /nfs/01/osu6683/brca/GSE31448_dep
+Created directory for results in outdir: /nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices
+Wrote dispatch script execution log to /nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices/run_report_2013-05-29_01:43:39.125922.txt.
+WARNING: row or column IDs or headers cannot be saved for non-text ftype 'pkl'. Ignoring ID list.
+Saved binary copy of matrix /nfs/01/osu6683/brca/GSE31448.SCAN.tab as /nfs/01/osu6683/brca/GSE31448_dep/GSE31448.SCAN.pkl as matrix_io dict.
+Wrote row_ids in row order to plain text file /nfs/01/osu6683/brca/GSE31448_dep/GSE31448.SCAN.rowIDs.txt.
+Wrote col_ids in col order to plain text file /nfs/01/osu6683/brca/GSE31448_dep/GSE31448.SCAN.colIDs.txt.
+Dispatching self dependency matrix computation.
+#PBS -N Dcor_GSE31448.SCAN.pkl
+#PBS -l nodes=20:ppn=12
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=72:00:00
+
+#tdate=$(date +%T)
+
+set -x
+cd /nfs/01/osu6683/brca/GSE31448_dep
+source $HOME/.bash_profile
+echo "PBS_JOBID: $PBS_JOBID"
+time mpiexec parallel-command-processor /nfs/01/osu6683/brca/GSE31448_dep/tmp_scripts/tmp_parallel_script_Dcor_GSE31448.SCAN.pkl_2013-05-29T01:43:59.265231_3889070.sh
+
+Submitted dispatch, job ID: 963215.oak-batch.osc.edu
+#PBS -N comp_Dcor_GSE31448.SCAN.pkl
+#PBS -l nodes=1:ppn=1
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=4:00:00
+#PBS -W depend=afterany:963215.oak-batch.osc.edu
+#tdate=$(date +%T)
+
+set -x
+cd /nfs/01/osu6683/brca/GSE31448_dep
+source $HOME/.bash_profile
+echo "PBS_JOBID: $PBS_JOBID"
+/usr/bin/time python /nfs/01/osu6683/pythonbase/modules/dependency_matrix/compile_script.py n_cols=18896 mtype=self n_rows=18896 exelog_fp=/nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices/exe_log_2013-05-29_01:43:39.125922.txt compile_dir=/nfs/01/osu6683/brca/GSE31448_dep/Dcor outdir=/nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices
+
+Submitted compilation for job ID 963215.oak-batch.osc.edu, jobname Dcor_GSE31448.SCAN.pkl, job ID: 963216.oak-batch.osc.edu
+#PBS -N PCC_GSE31448.SCAN.pkl
+#PBS -l nodes=20:ppn=12
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=72:00:00
+
+#tdate=$(date +%T)
+
+set -x
+cd /nfs/01/osu6683/brca/GSE31448_dep
+source $HOME/.bash_profile
+echo "PBS_JOBID: $PBS_JOBID"
+time mpiexec parallel-command-processor /nfs/01/osu6683/brca/GSE31448_dep/tmp_scripts/tmp_parallel_script_PCC_GSE31448.SCAN.pkl_2013-05-29T01:43:59.790220_9921458.sh
+
+Submitted dispatch, job ID: 963217.oak-batch.osc.edu
+#PBS -N comp_PCC_GSE31448.SCAN.pkl
+#PBS -l nodes=1:ppn=1
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=4:00:00
+#PBS -W depend=afterany:963217.oak-batch.osc.edu
+#tdate=$(date +%T)
+
+set -x
+cd /nfs/01/osu6683/brca/GSE31448_dep
+source $HOME/.bash_profile
+echo "PBS_JOBID: $PBS_JOBID"
+/usr/bin/time python /nfs/01/osu6683/pythonbase/modules/dependency_matrix/compile_script.py n_cols=18896 mtype=self n_rows=18896 exelog_fp=/nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices/exe_log_2013-05-29_01:43:39.125922.txt compile_dir=/nfs/01/osu6683/brca/GSE31448_dep/PCC outdir=/nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices
+
+Submitted compilation for job ID 963217.oak-batch.osc.edu, jobname PCC_GSE31448.SCAN.pkl, job ID: 963218.oak-batch.osc.edu
+#PBS -N PCC_GSE31448.SCAN.pkl_JSONCompile
+#PBS -l nodes=1:ppn=1
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=1:00:00
+#PBS -W depend=afterany:963216.oak-batch.osc.edu:963218.oak-batch.osc.edu
+#tdate=$(date +%T)
+
+set -x
+cd /nfs/01/osu6683/brca/GSE31448_dep
+source $HOME/.bash_profile
+echo "PBS_JOBID: $PBS_JOBID"
+/usr/bin/time python /nfs/01/osu6683/pythonbase/modules/dependency_matrix/jsonindex_script.py exelog_fname=/nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices/exe_log_2013-05-29_01:43:39.125922.txt
+
+EXPECTED REPORT FILE PATH for jobname [PCC_GSE31448.SCAN.pkl]: /nfs/01/osu6683/brca/GSE31448_dep/DEP_REPORT.PCC_GSE31448.SCAN.pkl.2013-05-29_01:43:39.125922.txt
+
+#PBS -N PCC_GSE31448.SCAN.pkl
+#PBS -l nodes=1:ppn=12
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=1:00:00
+#PBS -m ea
+#PBS -W depend=afterany:963219.oak-batch.osc.edu
+#tdate=$(date +%T)
+
+set -x
+cd /nfs/01/osu6683/brca/GSE31448_dep
+source $HOME/.bash_profile
+echo "PBS_JOBID: $PBS_JOBID"
+/usr/bin/time python /nfs/01/osu6683/pythonbase/modules/dependency_matrix/dependency_matrix_report.py jsons=/nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices/exe_log_2013-05-29_01:43:39.125922.json out_fname=/nfs/01/osu6683/brca/GSE31448_dep/DEP_REPORT.PCC_GSE31448.SCAN.pkl.2013-05-29_01:43:39.125922.txt
+
+Final execution log file path: /nfs/01/osu6683/brca/GSE31448_dep/compiled_dep_matrices/exe_log_2013-05-29_01:43:39.125922.json
+Final PID: 963220.oak-batch.osc.edu
+Final report fname: /nfs/01/osu6683/brca/GSE31448_dep/DEP_REPORT.PCC_GSE31448.SCAN.pkl.2013-05-29_01:43:39.125922.txt
+(pythonbase)~/brca/brca2013$ 

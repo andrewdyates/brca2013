@@ -1,0 +1,14 @@
+#PBS -N 31448.bool
+#PBS -l nodes=1:ppn=12
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -l walltime=120:00:00
+
+#tdate=$(date +%%T)
+
+set -x
+cd /nfs/01/osu6683/
+source .bash_profile
+
+cd ~/brca/brca2013
+time R CMD BATCH ~/brca/brca2013/may29.manual.allbool.gse31448.R may29.manual.allbool.gse31448.Rout
