@@ -1,4 +1,4 @@
-#PBS -N WEAKS
+#PBS -N WEAKS.31448.7307
 #PBS -l nodes=1:ppn=12
 #PBS -j oe
 #PBS -m ea
@@ -14,3 +14,4 @@ source .bash_profile
 cd $HOME
 #time R CMD BATCH ~/brca/brca2013/may22.compute.all.pairs.weak.gse7307.R ~/brca/brca2013/may22.compute.all.pairs.weak.gse7307.Rout
 time R CMD BATCH ~/brca/brca2013/may26.compute.all.pairs.weak.gse7307.R ~/brca/brca2013/may26.compute.all.pairs.weak.gse7307.Rout
+time R CMD BATCH ~/brca/brca2013/may29.compute.all.pairs.weak.gse31448.R ~/brca/brca2013/may29.compute.all.pairs.weak.gse31448.Rout
