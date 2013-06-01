@@ -5,6 +5,7 @@
 .\#*
 *.Rout
 *\.o*
+.DS_Store
 
 # C extensions
 *.so
