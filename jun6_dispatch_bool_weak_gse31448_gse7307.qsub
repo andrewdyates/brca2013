@@ -1,0 +1,21 @@
+#PBS -N boolweak7307.31448
+#PBS -l nodes=1:ppn=8
+#PBS -m ea
+#PBS -l walltime=99:00:00
+#PBS -M yates.115.osu@gmail.com
+
+set -x
+cd $HOME
+source .bash_profile
+
+FNAME1=$HOME/brca/jun6.GSE31448.select.tab
+FNAME2=$HOME/brca/jun6.GSE7307.select.tab
+B1=0.09676083
+B2=0.1541373
+ERR1=4
+ERR2=3
+time python $HOME/code/boolean_implication_fit_py/script.py fname=$FNAME1 b=$B1
+time python $HOME/code/boolean_implication_fit_py/script_weak.py fname=$FNAME1 err=$ERR1
+
+time python $HOME/code/boolean_implication_fit_py/script.py fname=$FNAME2 b=$B2
+time python $HOME/code/boolean_implication_fit_py/script_weak.py fname=$FNAME2 err=$ERR2
