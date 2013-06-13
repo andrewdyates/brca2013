@@ -5,6 +5,7 @@
 .\#*
 *.Rout
 *\.o*
+*\.e*
 .DS_Store
 
 # C extensions
