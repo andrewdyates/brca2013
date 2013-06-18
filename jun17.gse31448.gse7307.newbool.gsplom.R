@@ -14,7 +14,6 @@ GSE31448.WEAK <- M
 load("~/brca/GSE31448.SCAN.pkl.DCOR.values.tab.RData")
 GSE31448.DCOR <- M
 
-# fix this
 load("~/brca/jun6.GSE7307.select.tab.b0.1541.z3.00.r0.90.err0.10.bool.tab.RData")
 GSE7307.BOOL <- M
 load("~/brca/jun6.GSE7307.select.tab.err3.th0.2000.weak.tab.RData")
@@ -27,16 +26,21 @@ BR1e <- "672"; BR2e <- "675" # entrez gene IDs for select genes of interest
 # genes per class for BR1, BR2
 # all genes
 
-select.and.align <- function(BOOL, DCOR, WEAK=NULL, idlist) {
+select.and.align <- function(BOOL, DCOR, M, WEAK=NULL, idlist) {
     R = list()
     idlist <- c(idlist, BR1e, BR2e)
     qq <- rownames(BOOL) %in% idlist
     R$BOOL <- BOOL[qq,qq]
     qq <- rownames(DCOR) %in% idlist
     R$DCOR <- DCOR[qq,qq]
+    qq <- rownames(M) %in% idlist
+    R$M <- M[qq,]
     qq <- match(rownames(R$DCOR), rownames(R$BOOL))
     R$BOOL <- R$BOOL[na.omit(qq),na.omit(qq)]
     R$DCOR <- R$DCOR[!is.na(qq),!is.na(qq)]
+    qq <- match(rownames(R$DCOR), rownames(R$M))
+    stopifnot(all(!is.na(qq)))
+    R$M[qq,]
     if(!is.null(WEAK)) {
         qq <- rownames(WEAK) %in% idlist
         R$WEAK <- WEAK[qq,qq]
@@ -55,8 +59,8 @@ select.and.align <- function(BOOL, DCOR, WEAK=NULL, idlist) {
     R
 }
 
-GSE31448.TF <- select.and.align(GSE31448.BOOL, GSE31448.DCOR, GSE31448.WEAK, tf.entrez)
-GSE7307.TF <- select.and.align(GSE7307.BOOL, GSE7307.DCOR, GSE7307.WEAK, tf.entrez)
+GSE31448.TF <- select.and.align(GSE31448.BOOL, GSE31448.DCOR, S.GSE31448, GSE31448.WEAK, tf.entrez)
+GSE7307.TF <- select.and.align(GSE7307.BOOL, GSE7307.DCOR, S.GSE7307, GSE7307.WEAK, tf.entrez)
 dim(GSE31448.TF$BOOL)
 #[1] 1055 1055
 dim(GSE7307.TF$BOOL)
@@ -141,10 +145,12 @@ b2.3b[match(shared.tf.b2, names(b2.3b))]
 write.table(GSE31448.TF$BOOL, file="../jun17.R.GSE31448.TF.BOOL.tab", sep="\t")
 write.table(GSE31448.TF$WEAK, file="../jun17.R.GSE31448.TF.WEAK.tab", sep="\t")
 write.table(GSE31448.TF$DCOR, file="../jun17.R.GSE31448.TF.DCOR.tab", sep="\t")
+write.table(GSE31448.TF$M, file="../jun17.R.GSE31448.TF.M.tab", sep="\t")
 
 write.table(GSE7307.TF$BOOL, file="../jun17.R.GSE7307.TF.BOOL.tab", sep="\t")
 write.table(GSE7307.TF$WEAK, file="../jun17.R.GSE7307.TF.WEAK.tab", sep="\t")
 write.table(GSE7307.TF$DCOR, file="../jun17.R.GSE7307.TF.DCOR.tab", sep="\t")
+write.table(GSE7307.TF$M, file="../jun17.R.GSE7307.TF.M.tab", sep="\t")
 
 
 # map entrez IDs to symbols.
