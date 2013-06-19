@@ -70,6 +70,7 @@ dim(S.GSE7307)
 dim(S.GSE31448)
 #[1] 14794   357
 save(GSE31448.TF, GSE7307.TF, file="../jun17.BRCA.dep.matrices.TF.RData")
+stopifnot(FALSE)
 
 # EXAMINE BRCA* distributions
 gse31448.br1i <- which(rownames(GSE31448.TF$BOOL)==BR1e)
